@@ -1,0 +1,39 @@
+
+First, we created the two ec2-instance 
+1. grafana 
+     Ssh —22–my ip 
+     Grafana –3000–anywhere
+
+2. Prometheus 
+    Ssh —22–my IP 
+    Prometheus —9090–anywere
+
+
+promethues installation:
+===================
+Login to prometheus server  shift to the root user 
+
+
+Command:
+=========
+cd /opt
+
+wget https://github.com/prometheus/prometheus/releases/download/v2.39.1/prometheus-2.39.1.linux-amd64.tar.gz
+
+tar -xf prometheus-2.39.1.linux-amd64.tar.gz
+ cd prometheus-2.39.1.linux-amd64/
+
+
+Vi prometheus.yml
+
+To change the yml file –targets: [‘localhost:9090’,applicationprivateip:9100]
+
+./prometheus
+Go to the prometheus dashboard to check 
+            To —-status—target –to check ones
+
+
+ sed -i 's/ static_configs:- targets: ["localhost:9090",10.0.1.125:9100]' /prometheus.yml
+ sed -i 's/static_configs:- targets: ["localhost:9090"]/static_configs:- targets: ["localhost:9090",10.0.1.125:9100]' /prometheus.yml
+
+sudo sed -i 's/#server.host: "localhost"/server.host: "0.0.0.0"/g' /etc/kibana/kibana.yml

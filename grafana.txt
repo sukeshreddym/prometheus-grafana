@@ -1,0 +1,49 @@
+1. grafana 
+     Ssh —22–my ip 
+     Grafana –3000–anywhere
+
+
+Grafana Installation:
+====================
+Amazon Linux 
+t2.micro
+port number -- 3000
+
+
+    1  sudo su -
+    2  sudo yum update -y
+    3  sudo vi /etc/yum.repos.d/grafana.repo  
+---------------------------------------------------------------------------------------------
+[grafana]
+name=grafana
+baseurl=https://packages.grafana.com/oss/rpm
+repo_gpgcheck=1
+enabled=1
+gpgcheck=1
+gpgkey=https://packages.grafana.com/gpg.key
+sslverify=1
+sslcacert=/etc/pki/tls/certs/ca-bundle.crt
+----------------------------------------------------------------------------------------------  
+    4  sudo yum install grafana -y 
+    5  sudo systemctl daemon-reload
+    6  sudo systemctl start grafana-server
+    7  sudo systemctl status grafana-server
+    8  sudo systemctl enable grafana-server.service
+
+
+Go to the grafana dashboard:
+
+To click the datasourse —-prometheus–past the url–http://prometheusprivate:9090–save&test
+
+ To click the dashboard —import–1860–load
+
+
+                  (or)
+==========================================================================================
+cd /opt
+wget https://dl.grafana.com/oss/release/grafana-9.2.1.linux-amd64.tar.gz
+tar -xvzf grafana-9.2.1.linux-amd64.tar.gz
+chmod -R 755 grafana-9.2.1
+cd grafana-9.2.1/bin/
+nohup ./grafana-server &
+
